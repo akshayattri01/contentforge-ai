@@ -12,8 +12,11 @@ const { notFound, errorHandler } = require("./middleware/errorMiddleware");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+console.log("Step 1");
 
 connectDB();
+
+console.log("Step 2");
 
 const allowedOrigins = [
   process.env.CLIENT_URL,

@@ -52,13 +52,18 @@ export default function App() {
     setOutput("");
 
     try {
-      const response = await fetch("https://contentforge-ai-93wd.onrender.com/api/ai/generate", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ topic, type, tone }),
-      });
+      console.log("🔥 API CALL HIT FROM FRONTEND");
+    const response = await fetch("http://127.0.0.1:5000/api/ai/generate", {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+  },
+  body: JSON.stringify({
+    topic,
+    type,
+    tone,
+  }),
+});
 
       const data = await response.json();
       console.log(data);
