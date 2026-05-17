@@ -44,7 +44,7 @@ const deleteHistory = async (req, res, next) => {
       id,
     });
   } catch (error) {
-    next(error);
+     next(error);
   }
 };
 
