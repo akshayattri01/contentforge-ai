@@ -1,13 +1,12 @@
 const express = require("express");
-const {
-  getHistory,
-  deleteHistory,
-} = require("../controllers/historyController");
-const { protect } = require("../middleware/authMiddleware");
-
 const router = express.Router();
 
-router.get("/", protect, getHistory);
-router.delete("/:id", protect, deleteHistory);
+router.get("/", (req, res) => {
+  res.status(200).json({ success: true, history: [] });
+});
+
+router.delete("/:id", (req, res) => {
+  res.status(200).json({ success: true });
+});
 
 module.exports = router;
