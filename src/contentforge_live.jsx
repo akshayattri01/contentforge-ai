@@ -53,7 +53,7 @@ export default function App() {
 
     try {
       console.log("🔥 API CALL HIT FROM FRONTEND");
-    const response = await fetch("http://127.0.0.1:5000/api/ai/generate", {
+    const response = await fetch("https://contentforge-ai-93wd.onrender.com/api/ai/generate", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
