@@ -2,12 +2,11 @@ const mongoose = require("mongoose");
 
 const contentSchema = new mongoose.Schema(
   {
-    userId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      required: false,
-      index: true,
-    },
+   userId: {
+  type: String, 
+  required: false,
+  default: "demo123",
+},
     topic: {
       type: String,
       required: [true, "Topic is required"],
