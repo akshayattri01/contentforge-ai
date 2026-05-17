@@ -41,7 +41,7 @@ const generateContent = async (req, res, next) => {
     const aiResponse = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-  model: "openai/gpt-3.5-turbo",
+        model: "mistralai/mistral-7b-instruct:free",
         messages: [
           {
             role: "system",
@@ -74,7 +74,7 @@ const generateContent = async (req, res, next) => {
     }
 
     const content = await Content.create({
-    
+      userId: "demo123", // ✅ Fixed
       topic,
       type,
       tone,
