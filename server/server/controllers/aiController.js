@@ -18,7 +18,7 @@ const generateContent = async (req, res, next) => {
     const aiResponse = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-   model: "deepseek/deepseek-chat",
+ model: "openai/gpt-oss-20b:free",
         messages: [
           {
             role: "system",
