@@ -57,11 +57,7 @@ export default function App() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          topic,
-          type,
-          tone,
-        }),
+        body: JSON.stringify({ topic, type, tone }),
       });
 
       const data = await response.json();
@@ -78,9 +74,7 @@ export default function App() {
       } else {
         setOutput(text);
         const newItem = {
-          topic,
-          type,
-          tone,
+          topic, type, tone,
           output: text,
           date: new Date().toLocaleDateString(),
         };
@@ -105,23 +99,12 @@ export default function App() {
       <h1 style={{ marginBottom: 20 }}>⚡ ContentForge</h1>
 
       <div style={{ display: "flex", gap: 20 }}>
-        {/* LEFT */}
         <div style={{ flex: 1 }}>
           <h3>{t.type}</h3>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10 }}>
             {TYPES.map((tp) => (
-              <button
-                key={tp.value}
-                onClick={() => setType(tp.value)}
-                style={{
-                  padding: 10,
-                  borderRadius: 10,
-                  border: type === tp.value ? "2px solid #7c3aed" : "1px solid #444",
-                  background: type === tp.value ? "rgba(124,58,237,0.2)" : "#111",
-                  color: "#fff",
-                  cursor: "pointer",
-                }}
-              >
+              <button key={tp.value} onClick={() => setType(tp.value)}
+                style={{ padding: 10, borderRadius: 10, border: type === tp.value ? "2px solid #7c3aed" : "1px solid #444", background: type === tp.value ? "rgba(124,58,237,0.2)" : "#111", color: "#fff", cursor: "pointer" }}>
                 {tp.label}
               </button>
             ))}
@@ -130,84 +113,42 @@ export default function App() {
           <h3 style={{ marginTop: 20 }}>{t.tone}</h3>
           <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
             {TONES.map((tn) => (
-              <button
-                key={tn}
-                onClick={() => setTone(tn)}
-                style={{
-                  padding: "8px 14px",
-                  borderRadius: 20,
-                  border: tone === tn ? "2px solid #7c3aed" : "1px solid #444",
-                  background: tone === tn ? "rgba(124,58,237,0.2)" : "#111",
-                  color: "#fff",
-                  cursor: "pointer",
-                }}
-              >
+              <button key={tn} onClick={() => setTone(tn)}
+                style={{ padding: "8px 14px", borderRadius: 20, border: tone === tn ? "2px solid #7c3aed" : "1px solid #444", background: tone === tn ? "rgba(124,58,237,0.2)" : "#111", color: "#fff", cursor: "pointer" }}>
                 {tn}
               </button>
             ))}
           </div>
 
           <h3 style={{ marginTop: 20 }}>{t.topic}</h3>
-          <textarea
-            value={topic}
-            onChange={(e) => { setTopic(e.target.value); setError(""); }}
+          <textarea value={topic} onChange={(e) => { setTopic(e.target.value); setError(""); }}
             placeholder={t.placeholder}
-            style={{
-              width: "100%",
-              height: 120,
-              background: "#111",
-              border: error ? "2px solid red" : "1px solid #444",
-              borderRadius: 10,
-              padding: 12,
-              color: "#fff",
-              resize: "none",
-              fontSize: 16,
-            }}
-          />
+            style={{ width: "100%", height: 120, background: "#111", border: error ? "2px solid red" : "1px solid #444", borderRadius: 10, padding: 12, color: "#fff", resize: "none", fontSize: 16 }} />
 
           {error && <div style={{ color: "red", marginTop: 5 }}>{error}</div>}
 
-          <button
-            onClick={generate}
-            disabled={loading}
-            style={{
-              width: "100%",
-              marginTop: 15,
-              padding: 14,
-              borderRadius: 12,
-              border: "none",
-              background: "#7c3aed",
-              color: "#fff",
-              fontWeight: "bold",
-              fontSize: 16,
-              cursor: "pointer",
-            }}
-          >
+          <button onClick={generate} disabled={loading}
+            style={{ width: "100%", marginTop: 15, padding: 14, borderRadius: 12, border: "none", background: "#7c3aed", color: "#fff", fontWeight: "bold", fontSize: 16, cursor: "pointer" }}>
             {loading ? `${t.loading}${dots}` : `⚡ ${t.generate}`}
           </button>
         </div>
 
-        {/* RIGHT */}
         <div style={{ flex: 1, background: "#111", borderRadius: 12, padding: 15, minHeight: 400, border: "1px solid #333" }}>
           <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 10 }}>
             <h3>{t.output}</h3>
             {output && (
-              <button
-                onClick={copy}
-                style={{ padding: "8px 12px", borderRadius: 8, border: "none", background: "#7c3aed", color: "#fff", cursor: "pointer" }}
-              >
+              <button onClick={copy}
+                style={{ padding: "8px 12px", borderRadius: 8, border: "none", background: "#7c3aed", color: "#fff", cursor: "pointer" }}>
                 {copied ? t.copied : t.copy}
               </button>
             )}
           </div>
-
           <div style={{ whiteSpace: "pre-wrap", lineHeight: 1.7, color: "#ddd" }}>
             {loading ? `${t.loading}${dots}` : output || "✨ Generated content will appear here"}
           </div>
         </div>
       </div>
 
-      {/* HISTORY */}
       {history.length > 0 && (
         <div style={{ marginTop: 40 }}>
           <h3>📜 History</h3>
