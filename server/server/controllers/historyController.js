@@ -3,7 +3,7 @@ const Content = require("../models/Content");
 
 const getHistory = async (req, res, next) => {
   try {
-    const history = await Content.find({ userId: req.user._id })
+    const history = await Content.find({ userId: "demo123" })
       .sort({ createdAt: -1 })
       .select("-__v");
 
@@ -28,7 +28,7 @@ const deleteHistory = async (req, res, next) => {
 
     const content = await Content.findOne({
       _id: id,
-      userId: req.user._id,
+      userId: "demo123",
     });
 
     if (!content) {
@@ -48,7 +48,4 @@ const deleteHistory = async (req, res, next) => {
   }
 };
 
-module.exports = {
-  getHistory,
-  deleteHistory,
-};
+module.exports = { getHistory, deleteHistory };
