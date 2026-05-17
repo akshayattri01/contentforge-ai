@@ -2,41 +2,30 @@ const mongoose = require("mongoose");
 
 const contentSchema = new mongoose.Schema(
   {
-   userId: {
-  type: String, 
-  required: false,
-  default: "demo123",
-},
+    userId: {
+      type: String,
+      required: false,
+      default: "demo123",
+    },
     topic: {
       type: String,
-      required: [true, "Topic is required"],
+      required: true,
       trim: true,
-      minlength: [3, "Topic must be at least 3 characters long"],
-      maxlength: [300, "Topic cannot exceed 300 characters"],
     },
     type: {
       type: String,
-      required: [true, "Content type is required"],
-      trim: true,
-      lowercase: true,
+      required: true,
     },
     tone: {
       type: String,
-      required: [true, "Tone is required"],
-      trim: true,
-      lowercase: true,
+      required: true,
     },
     generatedContent: {
       type: String,
-      required: [true, "Generated content is required"],
-      trim: true,
+      required: true,
     },
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
-
-contentSchema.index({ userId: 1, createdAt: -1 });
 
 module.exports = mongoose.model("Content", contentSchema);
